@@ -1,0 +1,48 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. SIMULADORPRESTAMO.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+01 IMPORTE           PIC 9(7)V99.
+01 INTERES-ANUAL     PIC 9(2)V99.
+01 ANIOS             PIC 99.
+
+01 INTERES-TOTAL     PIC 9(7)V99.
+01 TOTAL-A-PAGAR     PIC 9(8)V99.
+01 NUM-CUOTAS        PIC 999.
+01 CUOTA-MENSUAL     PIC 9(7)V99.
+
+PROCEDURE DIVISION.
+INICIO.
+
+    DISPLAY "SIMULADOR DE PRESTAMO - COBOL".
+    DISPLAY "----------------------------".
+
+    DISPLAY "Introduce el importe del prestamo:".
+    ACCEPT IMPORTE.
+
+    DISPLAY "Introduce el interes anual (%):".
+    ACCEPT INTERES-ANUAL.
+
+    DISPLAY "Introduce el numero de anos:".
+    ACCEPT ANIOS.
+
+    COMPUTE INTERES-TOTAL =
+        (IMPORTE * INTERES-ANUAL * ANIOS) / 100.
+
+    COMPUTE TOTAL-A-PAGAR =
+        IMPORTE + INTERES-TOTAL.
+
+    COMPUTE NUM-CUOTAS = ANIOS * 12.
+
+    COMPUTE CUOTA-MENSUAL =
+        TOTAL-A-PAGAR / NUM-CUOTAS.
+
+    DISPLAY " ".
+    DISPLAY "RESULTADOS DEL PRESTAMO".
+    DISPLAY "-----------------------".
+    DISPLAY "Total a pagar: " TOTAL-A-PAGAR.
+    DISPLAY "Cuota mensual: " CUOTA-MENSUAL.
+
+    STOP RUN.
